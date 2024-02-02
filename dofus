@@ -1,0 +1,3 @@
+#!/bin/bash
+export LD_LIBRARY_PATH="/snap/dofus/current/usr/lib:/snap/dofus/current/usr/lib64:/snap/dofus/current/usr/lib/qmmp/plugins/Input/:/snap/dofus/current/usr/lib/x86_64-linux-gnu/avkys/submodules/MultiSink/:/snap/dofus/current/usr/lib/x86_64-linux-gnu/avkys/submodules/MultiSrc/:/snap/dofus/current/usr/lib/x86_64-linux-gnu/avkys/submodules/VideoCapture/"
+/snap/dofus/current/usr/share/anakama-launcher/zaap $@
