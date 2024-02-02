@@ -40,6 +40,7 @@ parts:
       rm -f libvulkan.so.1
       mv zaap.desktop ${CRAFT_PART_INSTALL}/usr/share/applications/zaap.desktop
       chmod +x ${CRAFT_PART_INSTALL}/usr/share/applications/
+      cp zaap.png ${CRAFT_PART_INSTALL}/usr/share/pixmaps/
       cd ..
       mv squashfs-root/* ${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/
       chmod +x ${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/zaap
