@@ -12,7 +12,7 @@ architectures:
   - build-on: amd64
 parts:
   dofus:
-    source: https://github.com/andykimpe/dofus-snap.git
+    source: https://github.com/andykimpe/dofus-snap/archive/refs/heads/main.tar.gz
     plugin: nil
     override-build: |
       wget https://launcher.cdn.ankama.com/installers/production/Dofus-Setup-x86_64.AppImage -O Dofus-Setup-x86_64.AppImage
