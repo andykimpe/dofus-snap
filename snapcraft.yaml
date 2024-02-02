@@ -78,8 +78,8 @@ apps:
       - network
       - wayland
       - x11
-    command: usr/share/anakama-launcher/zaap
-    desktop: usr/share/applications/zaap.desktop
+    command: /usr/share/anakama-launcher/zaap
+    desktop: /usr/share/applications/zaap.desktop
     extensions: [gnome]
     environment:
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio
