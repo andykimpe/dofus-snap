@@ -20,8 +20,8 @@ parts:
       ./Dofus-Setup-x86_64.AppImage --appimage-extract
       rm -f Dofus-Setup-x86_64.AppImage
       cd squashfs-root
-      sed -i 's|Exec=AppRun --no-sandbox %U|Exec=${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/zaap --no-sandbox %U|g' zaap.desktop
-      sed -i 's|Icon=zaap|Icon=${CRAFT_PART_INSTALL}/usr/share/pixmaps/zaap.png|g' zaap.desktop
+      sed -i "s|Exec=AppRun --no-sandbox %U|Exec=${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/zaap --no-sandbox %U|g" zaap.desktop
+      sed -i "s|Icon=zaap|Icon=${CRAFT_PART_INSTALL}/usr/share/pixmaps/zaap.png|g" zaap.desktop
       mkdir -p ${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/
       mkdir -p ${CRAFT_PART_INSTALL}/usr/share/pixmaps/
       mkdir -p ${CRAFT_PART_INSTALL}/usr/share/applications/
