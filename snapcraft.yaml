@@ -7,7 +7,6 @@ adopt-info: dofus
 grade: stable
 confinement: strict
 base: core22
-compression: lzo
 architectures:
   - build-on: amd64
 parts:
