@@ -1,0 +1,85 @@
+name: dofus
+version: 3.12.6.18559
+summary: Dofus and a Game created by the French company Ankama Game available on https://dofus.com.
+description: |
+  Dofus and a Game created by the French company Ankama Game available on https://dofus.com.
+adopt-info: dofus
+grade: stable
+confinement: strict
+base: core22
+compression: lzo
+architectures:
+  - build-on: amd64
+parts:
+  dofus:
+    source: https://github.com/andykimpe/dofus-snap.git
+    plugin: nil
+    override-build: |
+      wget https://launcher.cdn.ankama.com/installers/production/Dofus-Setup-x86_64.AppImage -O Dofus-Setup-x86_64.AppImage
+      chmod +x Dofus-Setup-x86_64.AppImage
+      ./Dofus-Setup-x86_64.AppImage --appimage-extract
+      rm -f Dofus-Setup-x86_64.AppImage
+      cd squashfs-root
+      sed -i 's|Exec=AppRun --no-sandbox %U|Exec=${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/zapp --no-sandbox %U|g' zaap.desktop
+      sed -i 's|Icon=zaap|Icon=${CRAFT_PART_INSTALL}/usr/share/pixmaps/zaap.png|g' zaap.desktop
+      mkdir -p ${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/
+      mkdir -p ${CRAFT_PART_INSTALL}/usr/share/pixmaps/
+      mkdir -p ${CRAFT_PART_INSTALL}/usr/share/applications/
+      rm -f zaap.png
+      rm -f .DirIcon
+      cp usr/share/icons/hicolor/256x256/apps/zaap.png ./
+      mv zaap.png .DirIcon
+      cp usr/share/icons/hicolor/256x256/apps/zaap.png ./
+      rm -rf usr/
+      rm -f AppRun
+      rm -f libEGL.so
+      rm -f libffmpeg.so
+      rm -f libGLESv2.so
+      mkdir -p ${CRAFT_PART_INSTALL}/usr/lib64/
+      mv libvk_swiftshader.so ${CRAFT_PART_INSTALL}/usr/lib64/
+      rm -f libvulkan.so.1
+      mv zaap.desktop ${CRAFT_PART_INSTALL}/usr/share/applications/zaap.desktop
+      chmod +x ${CRAFT_PART_INSTALL}/usr/share/applications/
+      cd ..
+      mv squashfs-root/* ${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/
+      chmod +x ${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/zapp
+      rm -rf squashfs-root
+    stage-packages:
+      - libegl-dev
+      - qmmp
+      - webcamoid-plugins
+      - libgles-dev
+      - nvidia-340
+      - libvulkan1
+      - libappindicator1
+      - libgconf-2-4
+      - libindicator7
+      - libnotify4
+      - libxss1
+      - libxtst6
+    build-packages:
+      - git
+      - wget
+      - coreutils
+      - bash
+
+apps:
+  dofus:
+    plugs:
+      - desktop
+      - desktop-legacy
+      - audio-playback
+      - opengl
+      - joystick
+      - raw-usb
+      - screen-inhibit-control
+      - home
+      - removable-media
+      - network
+      - wayland
+      - x11
+    command: usr/share/anakama-launcher/zapp
+    desktop: usr/share/applications/zaap.desktop
+    extensions: [gnome]
+    environment:
+      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio
