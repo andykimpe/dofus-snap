@@ -78,7 +78,7 @@ apps:
       - network
       - wayland
       - x11
-    command: usr/share/anakama-launcher/zapp
+    command: usr/share/anakama-launcher/zaap
     desktop: usr/share/applications/zaap.desktop
     extensions: [gnome]
     environment:
