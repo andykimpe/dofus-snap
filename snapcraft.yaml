@@ -19,7 +19,7 @@ parts:
       ./Dofus-Setup-x86_64.AppImage --appimage-extract
       rm -f Dofus-Setup-x86_64.AppImage
       cd squashfs-root
-      sed -i "s|Exec=AppRun --no-sandbox %U|Exec=zaap --no-sandbox %U|g" zaap.desktop
+      sed -i "s|Exec=AppRun --no-sandbox %U|Exec=/snap/dofus/current/usr/share/anakama-launcher/zaap --no-sandbox %U|g" zaap.desktop
       sed -i "s|Icon=zaap|Icon=/usr/share/pixmaps/zaap.png|g" zaap.desktop
       mkdir -p ${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/
       mkdir -p ${CRAFT_PART_INSTALL}/usr/share/pixmaps/
@@ -78,8 +78,8 @@ apps:
       - network
       - wayland
       - x11
-    command: /usr/share/anakama-launcher/zaap
-    desktop: /usr/share/applications/zaap.desktop
+    command: usr/share/anakama-launcher/zaap
+    desktop: usr/share/applications/zaap.desktop
     extensions: [gnome]
     environment:
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio
