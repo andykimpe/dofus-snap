@@ -20,7 +20,7 @@ parts:
       ./Dofus-Setup-x86_64.AppImage --appimage-extract
       rm -f Dofus-Setup-x86_64.AppImage
       cd squashfs-root
-      sed -i 's|Exec=AppRun --no-sandbox %U|Exec=${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/zapp --no-sandbox %U|g' zaap.desktop
+      sed -i 's|Exec=AppRun --no-sandbox %U|Exec=${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/zaap --no-sandbox %U|g' zaap.desktop
       sed -i 's|Icon=zaap|Icon=${CRAFT_PART_INSTALL}/usr/share/pixmaps/zaap.png|g' zaap.desktop
       mkdir -p ${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/
       mkdir -p ${CRAFT_PART_INSTALL}/usr/share/pixmaps/
@@ -42,7 +42,7 @@ parts:
       chmod +x ${CRAFT_PART_INSTALL}/usr/share/applications/
       cd ..
       mv squashfs-root/* ${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/
-      chmod +x ${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/zapp
+      chmod +x ${CRAFT_PART_INSTALL}/usr/share/anakama-launcher/zaap
       rm -rf squashfs-root
     stage-packages:
       - libegl-dev
